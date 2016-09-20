@@ -7,7 +7,8 @@ class AssetController extends BaseController {
 	*/
 	public function recordAsset()
 	{
-		return View::make('asset.new_asset');
+		$categories=Category::all();
+		return View::make('asset.new_asset',compact('categories'));
 	}
 	/**
 	*FUNCTION TO DISPLAY EDIT ASSETS PAGE
@@ -33,6 +34,7 @@ class AssetController extends BaseController {
 		$category=array_get($records, 'category');		
 		$name=array_get($records, 'name');
 		$serial=array_get($records, 'serial');
+		$lease=array_get($records, 'lease_price');
 		$desc=array_get($records, 'description');		
 		$store=array_get($records, 'store');
 
@@ -40,6 +42,7 @@ class AssetController extends BaseController {
 		$item_to_update->category=$category;		
 		$item_to_update->name=$name;
 		$item_to_update->serial_number=$serial;		
+		$item_to_update->lease_price=$lease;	
 		$item_to_update->description=$desc;		
 		$item_to_update->store=$store;
 		$item_to_update->save();
@@ -73,6 +76,7 @@ class AssetController extends BaseController {
 		$category=array_get($records, 'category');		
 		$name=array_get($records, 'name');
 		$serial=array_get($records, 'serial');
+		$lease=array_get($records, 'lease_price');
 		$desc=array_get($records, 'description');		
 		$store=array_get($records, 'store');
 
@@ -82,6 +86,7 @@ class AssetController extends BaseController {
 		$item->category=$category;	
 		$item->name=$name;
 		$item->serial_number=$serial;
+		$item->lease_price=$lease;
 		$item->is_in_store="YES";
 		$item->description=$desc;		
 		$item->store=$store;

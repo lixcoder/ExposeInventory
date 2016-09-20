@@ -54,7 +54,11 @@
 						<div class="form-group">
 							<label class="">Serial Number: </label>
 							<input class="form-control" type="text" name="serial" value="{{$edit_asset['serial_number']}}" required>
-						</div>						
+						</div>	
+						<div class="form-group">
+							<label class="">Lease Price: </label>
+							<input class="form-control" type="text" name="lease_price" value="{{$edit_asset['lease_price']}}" required>
+						</div>					
 						<div class="form-group">
 							<label for="type">Category:</label>
 							<select name="category" class="form-control" required>								

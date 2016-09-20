@@ -7,11 +7,28 @@ class HomeController extends BaseController {
 	*/
 	public function splashScreen()
 	{
-		$assets=Asset::count('id');
-		$clientele=Client::count('id');
+		$assets=Asset::count('id');		
 		$maintains=Checkout::count('id');
 		$books=Booking::count('id');
-		return View::make('home.dashboard',compact('assets','clientele','maintains','books'));
+		$checkouts=Checkout::count('id');
+		return View::make('home.dashboard',compact('assets','maintains','books','checkouts'));
+	}
+	/**
+	*FUNCTION TO DISPLAY SPLASH SCREEN
+	*
+	*/
+	public function createCategory()
+	{
+		//Collect user input
+		$records=Input::all();	
+		$cat_name=array_get($records, 'category');
+		$cat_desc=array_get($records, 'description');		
+
+		$cats=new Category;
+		$cats->name=$cat_name;
+		$cats->description=$cat_desc;
+		$cats->save();
+		return Redirect::back()->withMessage('Category created successfully.');
 	}
 
 }

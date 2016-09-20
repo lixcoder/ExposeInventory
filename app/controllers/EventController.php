@@ -70,14 +70,16 @@ class EventController extends BaseController {
 		$start_date=array_get($records, 'start_date');
 		$end_date=array_get($records, 'end_date');		
 		$tech_lead=array_get($records, 'tech_lead');	
+		$venue=array_get($records,'eventvenue');
 
 		$event=new Occasion;
 		$event->name=$event_name;
 		$event->start_date=$start_date;
-		$event->end_date=$end_date;		
+		$event->end_date=$end_date;	
+		$event->event_venue=$venue;	
 		$event->technical_lead=$tech_lead;		
 		$event->save();		
-
+		
 		return Redirect::back()->with('message','The event records successfully created.');
 	}
 	/**
@@ -95,26 +97,27 @@ class EventController extends BaseController {
 	*
 	*/
 	public function pickEventItem(){
-		$records=Input::all();
+		//Collect user input
+		$records=Input::all();		
+		$item_name=array_get($records, 'asset');
 		$event_id=array_get($records,'event_id');		
-		$asset_id=array_get($records,'asset_id');
-		//get the event venue and client id from the bookings table
-		$book_details=Booking::where('event_id','=',$event_id)->first();
-		if(empty($book_details)){
-			return Redirect::back()->withAlert('The booking for the specific event does not exist. Kindly reserve a booking for the specific event before proceeding to picking more items for the event.');
-		}else{
-			$book_client_id=$book_details['client_id'];		
-			$book_venue=$book_details['event_venue'];
-			//push data to the booking table in the database
-			$add_book=new Booking;
-			$add_book->asset_id=$asset_id;
-			$add_book->event_id=$event_id;
-			$add_book->client_id=$book_client_id;
-			$add_book->event_venue=$book_venue;
-			$add_book->save();
+		$start_date=array_get($records, 'start_date');
+		$end_date=array_get($records, 'end_date');		
+		$event_venue=array_get($records, 'eventvenue');			
 
-			//Redirect back with message
-			return Redirect::back()->withMessage('Item picked');
-		}			
-	}
+		//Set Default Timezone
+		date_default_timezone_set('Africa/Nairobi');			
+
+		//Insert data into bookings table
+		$book=new Booking;
+		$book->asset_id=$item_name;
+		$book->event_id=$event_id;
+		$book->event_venue=$event_venue;
+		$book->start_date=$start_date;
+		$book->end_date=$end_date;
+		$book->save();
+
+		//Redirect Back with a message
+		return Redirect::back()->with('message','Item Booked.');
+		}				
 }
