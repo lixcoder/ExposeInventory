@@ -13,7 +13,8 @@ Route::group(array('before'=>'auth'),function(){
 *
 */
 Route::get('/','HomeController@splashScreen');
-Route::post('/dashboard','HomeController@createCategory');
+Route::get('/new_assetcategory','HomeController@showCategory');
+Route::post('/new_assetcategory','HomeController@createCategory');
 /**
 *THE ASSETS ROUTES
 *

@@ -87,6 +87,12 @@
 					</a>
 					<ul class="sub-menu">
 						<li>
+							<a href="{{{ URL::to('/new_assetcategory') }}}">
+								<i class="fa fa-plus"></i>
+								Asset Category
+							</a>
+						</li>		
+						<li>
 							<a href="{{{ URL::to('/new_asset') }}}">
 								<i class="fa fa-plus"></i>
 								New Asset

@@ -138,36 +138,13 @@
 			</div>
 			<!--START CONTENT SECOND-->
 			<div class="row" style="margin-top:2%;">
-				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">				
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">				
 					<div class="dashboard-stat ">
-					<img src="{{asset('assets/img/expose_banner.png')}}" alt="Expose Banner" class="img-responsive"/>
+					<center>
+						<img src="{{asset('assets/img/expose_banner.png')}}" alt="Expose Banner" class="img-responsive"/>
+					</center>					  
 					</div>						
-				</div>	
-				<div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">				
-					<div class="dashboard-stat ">
-					<div >
-					<h3>Add Category</h3>
-					<hr>
-					<form role="form" method="POST" action="{{{ URL::to('/dashboard') }}}">
-							<input type="hidden" name="_token" value="{{{ Session::getToken() }}}">			
-							<div class="form-group">
-								<label for="username">Category</label>
-								<div class="right-inner-addon">                        		
-	                        		<input class="form-control " type="text" name="category"/>
-	                        	</div>							
-							</div>
-							<div class="form-group">
-								<label class="">Description: </label>
-								<textarea class="form-control" rows="5" cols="45" name="description">
-									
-								</textarea>
-							</div>																					
-							<div class="form-group text-left">
-								<input class="btn btn-primary" type="submit" name="btn-register" value="Add Category">
-							</div>
-						</form>
-					</div>
-				</div>						
+				</div>								
 			</div>													
 			</div>
 			<!--END CONTENT SECOND-->

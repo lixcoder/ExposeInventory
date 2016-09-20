@@ -13,6 +13,16 @@ class HomeController extends BaseController {
 		$checkouts=Checkout::count('id');
 		return View::make('home.dashboard',compact('assets','maintains','books','checkouts'));
 	}
+
+	/**
+	*FUNCTION TO DISPLAY SPLASH SCREEN
+	*
+	*/
+	public function showCategory()
+	{
+		return View::make('asset.new_assetcategory');
+	}
+
 	/**
 	*FUNCTION TO DISPLAY SPLASH SCREEN
 	*
