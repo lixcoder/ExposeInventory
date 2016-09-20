@@ -1,0 +1,91 @@
+<?php
+
+/**
+*THE ROUTE GROUP TO ENFORCE AUTHENTICATION
+*
+*/
+Route::group(array('before'=>'auth'),function(){
+
+});
+
+/**
+*THE SPLASH SCREEN/FIRST APPLICATION PAGE
+*
+*/
+Route::get('/','HomeController@splashScreen');
+/**
+*THE ASSETS ROUTES
+*
+*/
+Route::get('/new_asset','AssetController@recordAsset');
+Route::post('/new_asset','AssetController@createAsset');
+Route::get('/view_asset','AssetController@viewAsset');
+Route::get('/view_asset/delete/{id}','AssetController@trashAsset');
+Route::post('asset/view_asset','AssetController@editAsset');
+Route::post('asset/view_asset/update','AssetController@updateAsset');
+/**
+*THE BOOKINGS ROUTES
+*
+*/
+Route::get('/new_booking','BookingController@recordBooking');
+Route::post('/new_booking','BookingController@createBooking');
+Route::get('/view_booking/delete/{id}','BookingController@trashBooking');
+Route::post('booking/view_booking','BookingController@editBooking');
+Route::get('/view_booking','BookingController@viewBooking');
+Route::post('booking/view_booking/update','BookingController@updateBooking');
+Route::get('/view_booking/manage/{id}','BookingController@manageBooking');
+/**
+*THE EVENTS ROUTES
+*
+*/
+Route::get('/new_event','EventController@recordEvent');
+Route::post('/new_event','EventController@createEvent');
+Route::get('/view_event','EventController@viewEvent');
+Route::get('/view_event/delete/{id}','EventController@trashEvent');
+Route::post('event/view_event','EventController@editEvent');
+Route::post('event/view_event/update','EventController@updateEvent');
+Route::get('/view_event/manage/{id}','EventController@manageEvent');
+Route::post('view_event/manage/manage_event','EventController@pickEventItem');
+/**
+*THE CHECKOUTS ROUTES
+*
+*/
+Route::get('/new_checkout','CheckoutController@recordCheckout');
+Route::post('/new_checkout','CheckoutController@createCheckout');
+Route::get('/view_checkout/delete/{id}','CheckoutController@trashCheckout');
+Route::get('/view_checkout','CheckoutController@viewCheckout');
+Route::post('checkout/view_checkout','CheckoutController@editCheckout');
+Route::post('checkout/view_checkout/update','CheckoutController@updateCheckout');
+/**
+*THE MAINTENANCE ROUTES
+*
+*/
+Route::get('/new_maintenance','MaintenanceController@recordMaintenance');
+Route::post('/new_maintenance','MaintenanceController@createMaintenance');
+Route::get('/view_maintenance','MaintenanceController@viewMaintenance');
+Route::get('/view_maintenance/delete/{id}','MaintenanceController@trashMaintenance');
+Route::post('maintenance/view_maintenance','MaintenanceController@editMaintenance');
+Route::post('maintenance/view_maintenance/update','MaintenanceController@updateMaintenance');
+/**
+*THE REPORTS ROUTE
+*
+*/
+Route::get('/assets_report','ReportsController@curtainReport');
+Route::get('/bookings_report','ReportsController@bookingReport');
+Route::post('/bookings_report','ReportsController@viewBookingReport');
+Route::get('/checkouts_report','ReportsController@checkoutReport');
+Route::post('/checkouts_report','ReportsController@viewCheckoutReport');
+Route::get('/events_report','ReportsController@eventReport');
+Route::post('/events_report','ReportsController@viewEventReport');
+Route::get('/maintenances_report','ReportsController@maintenanceReport');
+Route::post('/maintenances_report','ReportsController@viewMaintenanceReport');
+/**
+*THE SEARCH ROUTE
+*
+*/
+Route::post('/search','SearchController@performSearch');
+
+/**
+ * Quotation Controller
+ */
+Route::controller('/orders/quotation', 'OrdersController');
