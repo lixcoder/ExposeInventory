@@ -88,7 +88,19 @@ class RecreateDatabasewithForeignKeys extends Migration {
             $table->string('outcome');                                                       
             $table->timestamps();
             $table->softdeletes();
-        });        
+        }); 
+
+        Schema::create('locations', function ($table) {
+            $table->increments('id');  
+            $table->integer('asset_id')->unsigned();
+            $table->foreign('asset_id')->references('id')->on('assets')->onDelete('cascade')->onUpdate('cascade');            
+            $table->date('date')->nullable();       
+            $table->float('lat')->nullable();
+            $table->float('long')->nullable();                                                       
+            $table->timestamps();
+            $table->softdeletes();
+        });
+
 	}
 
 	/**

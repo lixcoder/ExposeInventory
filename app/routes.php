@@ -85,3 +85,5 @@ Route::post('/maintenances_report','ReportsController@viewMaintenanceReport');
 *
 */
 Route::post('/search','SearchController@performSearch');
+
+Route::resource('locations', 'LocationsController');
