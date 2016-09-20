@@ -23,11 +23,10 @@ public function viewBookingReport(){
 	$records=Input::all();
 	$periodfrom=array_get($records,'period_from');
 	$periodto=array_get($records,'period_to');
-	$books=DB::table('bookings')
-				->join('clients','bookings.client_id','=','clients.id')
+	$books=DB::table('bookings')				
 				->join('assets','bookings.asset_id','=','assets.id')
 				->join('events','bookings.event_id','=','events.id')
-				->select('events.id as event_id','assets.id as asset_id','bookings.event_venue as event_venue','clients.client_name as client_name','clients.id as client_id','bookings.id as id','assets.name as item_name','events.name as event_name','events.start_date as event_start', 'events.end_date as event_end','events.technical_lead as tech_lead')	
+				->select('events.id as event_id','assets.id as asset_id','bookings.event_venue as event_venue','bookings.id as id','assets.name as item_name','events.name as event_name','events.start_date as event_start', 'events.end_date as event_end','events.technical_lead as tech_lead')	
 				->where('events.start_date','>=',$periodfrom)
 				->where('events.end_date','<=',$periodto)
 				->get();
@@ -54,12 +53,11 @@ public function viewCheckoutReport(){
 	$records=Input::all();
 	$periodfrom=array_get($records,'period_from');
 	$periodto=array_get($records,'period_to');
-	$checks=DB::table('checkouts')
-				->join('clients','checkouts.client_id','=','clients.id')
+	$checks=DB::table('checkouts')				
 				->join('assets','checkouts.asset_id','=','assets.id')				
-				->select('assets.id as asset_id','clients.id as client_id','clients.client_name as client_name','checkouts.id as id','assets.name as item_name','checkouts.date_out as date_out','checkouts.checked_out_by as checked_out_by', 'checkouts.date_in as date_in','checkouts.checked_in_by as checked_in_by','checkouts.date_expected_out as date_expected_out','checkouts.date_expected_in as date_expected_in')	
+				->select('assets.id as asset_id','checkouts.id as id','assets.name as item_name','checkouts.date_out as date_out','checkouts.checked_out_by as checked_out_by')	
 				->where('checkouts.date_out','>=',$periodfrom)
-				->where('checkouts.date_in','<=',$periodto)		
+				->where('checkouts.date_out','<=',$periodto)		
 				->get();	
 	if(empty($checks)){
 		return Redirect::back()->withAlert('The selected duration has no records to view.');
@@ -90,7 +88,7 @@ public function viewEventReport(){
 				->where('end_date','<=',$periodto)		
 				->get();	
 			//return $maintains;
-	if(empty($occasionss)){
+	if(empty($occasions)){
 		return Redirect::back()->withAlert('The selected duration has no records to view.');
 	}else{
 		$pdf = PDF::loadView('pdf.viewEventReport', compact('occasions','periodfrom','periodto'));

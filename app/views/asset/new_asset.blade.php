@@ -64,16 +64,20 @@
 						<div class="form-group">
 							<label class="">Serial Number: </label>
 							<input class="form-control" type="text" name="serial" value="" required>
+						</div>
+						<div class="form-group">
+							<label class="">Lease Price: </label>
+							<input class="form-control" type="text" name="lease_price" value="" required>
 						</div>						
 						<div class="form-group">
+							@if(isset($categories))
 							<label for="type">Category:</label>
-							<select name="category" class="form-control" required>								
-								<option value="Sound">Sound</option>
-								<option value="Led Screens">Led Screens</option>
-								<option value="Plasma Screens">Plasma Screens</option>
-								<option value="Accessories">Accessories</option>
-
+							<select name="category" class="form-control" required>
+								@foreach($categories as $cat)								
+								<option value="{{$cat['name']}}">{{$cat['name']}}</option>
+								@endforeach								
 							</select>
+							@endif
 						</div>												
 						<div class="form-group">
 							<label for="type">Store:</label>

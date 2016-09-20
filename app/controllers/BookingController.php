@@ -2,21 +2,20 @@
 
 class BookingController extends BaseController {
 	/**
-	*FUNCTION TO DISPLAY NEW BOOKINGS PAGE
+	*FUNCTION TO DISPLAY NEW CheckinS PAGE
 	*
 	*/
-	public function recordBooking()
+	public function recordCheckin()
 	{
-		$assets=Asset::all();
-		$clients=Client::all();		
+		$assets=Asset::all();			
 		$events=Occasion::all();
-		return View::make('booking.new_booking',compact('assets','clients','events'));
+		return View::make('checkin.new_checkin',compact('assets','events'));
 	}
 	/**
-	*FUNCTION TO DISPLAY EDIT BOOKINGS PAGE
+	*FUNCTION TO DISPLAY EDIT CheckinS PAGE
 	*
 	*/
-	public function editBooking()
+	public function editCheckin()
 	{	
 		$id=Input::get('book_id');
 		$event_name=Input::get('event_name');
@@ -30,28 +29,28 @@ class BookingController extends BaseController {
 		$book_id=Input::get('book_id');
 		$asset_id=Input::get('asset_id');
 		$event_id=Input::get('event_id');
-		return View::make('booking.edit_booking',compact('event_name','event_start','event_end','tech_lead',
+		return View::make('Checkin.edit_Checkin',compact('event_name','event_start','event_end','tech_lead',
 			'client_name','client_id','event_venue','item_name','book_id','asset_id','event_id'));
 	}
 	/**
-	*FUNCTION TO DISPLAY VIEW BOOKINGS PAGE
+	*FUNCTION TO DISPLAY VIEW CheckinS PAGE
 	*
 	*/
-	public function viewBooking()
+	public function viewCheckin()
 	{
-		$books=DB::table('bookings')
-				->join('clients','bookings.client_id','=','clients.id')
-				->join('assets','bookings.asset_id','=','assets.id')
-				->join('events','bookings.event_id','=','events.id')
-				->select('events.id as event_id','assets.id as asset_id','bookings.event_venue as event_venue','clients.client_name as client_name','clients.id as client_id','bookings.id as id','assets.name as item_name','events.name as event_name','events.start_date as event_start', 'events.end_date as event_end','events.technical_lead as tech_lead')			
-				->get();				
-		return View::make('booking.view_booking',compact('books'));
+		/*$books=DB::table('Checkins')
+				->join('clients','Checkins.client_id','=','clients.id')
+				->join('assets','Checkins.asset_id','=','assets.id')
+				->join('events','Checkins.event_id','=','events.id')
+				->select('events.id as event_id','assets.id as asset_id','Checkins.event_venue as event_venue','clients.client_name as client_name','clients.id as client_id','Checkins.id as id','assets.name as item_name','events.name as event_name','events.start_date as event_start', 'events.end_date as event_end','events.technical_lead as tech_lead')			
+				->get();	*/			
+		return View::make('checkin.view_checkin',compact(''));
 	}
 	/**
-	*FUNCTION TO UPDATE A BOOKING
+	*FUNCTION TO UPDATE A Checkin
 	*
 	*/
-	public function updateBooking()
+	public function updateCheckin()
 	{
 		//Collect user input
 		$records=Input::all();	
@@ -78,56 +77,52 @@ class BookingController extends BaseController {
 		$event->technical_lead=$tech_lead;		
 		$event->save();		
 
-		//Insert data into bookings table
-		$book=Booking::where('id','=',$book_id)->first();;
+		//Insert data into Checkins table
+		$book=Checkin::where('id','=',$book_id)->first();;
 		$book->asset_id=$asset_id;
 		$book->event_id=$event_id;
-		$book->event_venue=$event_venue;
-		$book->client_id=$client_id;
+		$book->event_venue=$event_venue;		
 		$book->save();
 
 		//Redirect Back with a message
-		return Redirect::action('BookingController@viewBooking')->withMessage('Booking details successfully Updated');
+		return Redirect::action('CheckinController@viewCheckin')->withMessage('Checkin details successfully Updated');
 	}
-	public function createBooking(){
+	public function createCheckin(){
 		//Collect user input
 		$records=Input::all();		
 		$item_name=array_get($records, 'item');
-		$event_id=array_get($records,'event');
-		$event_name=array_get($records, 'eventname');
-		$start_date=array_get($records, 'start_date');
-		$end_date=array_get($records, 'end_date');
-		$client=array_get($records, 'client');
-		$event_venue=array_get($records, 'eventvenue');
-		$tech_lead=array_get($records, 'tech_lead');		
+		$event_id=array_get($records,'event');		
+		$date_back=array_get($records, 'date_out');		
+		$condition=array_get($records, 'condition');
+		$checked_in_by=array_get($records, 'checked_out_by');			
 
 		//Set Default Timezoe
 		date_default_timezone_set('Africa/Nairobi');			
 
-		//Insert data into bookings table
-		$book=new Booking;
+		//Insert data into Checkins table
+		$book=new Checkin;
 		$book->asset_id=$item_name;
-		$book->event_id=$event_id;
-		$book->event_venue=$event_venue;
-		$book->client_id=$client;
+		$book->date_in=$date_back;
+		$book->checked_in_by=$checked_in_by;
+		$book->condition=$condition;
 		$book->save();
 
 		//Redirect Back with a message
-		return Redirect::back()->with('message','The Booking details successfully created.');
+		return Redirect::back()->with('message','The Checkin details successfully created.');
 	}
 
-	public function trashBooking($id){
-		Booking::destroy($id);
-		return Redirect::back()->withAlert("Booking record has been deleted");
+	public function trashCheckin($id){
+		Checkin::destroy($id);
+		return Redirect::back()->withAlert("Checkin record has been deleted");
 	}
 
-	public function manageBooking($id){
-		$assets=DB::table('bookings')				
-				->join('assets','bookings.asset_id','assets.id')
-				->join('events','bookings.event_id','events.id')
+	public function manageCheckin($id){
+		$assets=DB::table('Checkins')				
+				->join('assets','Checkins.asset_id','assets.id')
+				->join('events','Checkins.event_id','events.id')
 				->select('events.name as event_name','events.start_date as start_date','events.end_date as end_date','assets.name as name','assets.description as description','assets.store as store')				
 				->get();
 				//dd($assets);
-		return View::make('booking.manage_booking',compact('assets'));
+		return View::make('Checkin.manage_Checkin',compact('assets'));
 	}
 }

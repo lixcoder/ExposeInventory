@@ -8,7 +8,7 @@
 				<div class="col-md-12">
 					<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 					<h3 class="page-title">
-					Bookings <small>Record Bookings</small>
+					Checkins <small>Record Checkins</small>
 					</h3>
 					<ul class="page-breadcrumb breadcrumb">
 						<li>
@@ -20,13 +20,13 @@
 						</li>
 						<li>
 							<a href="{{{ URL::to('#') }}}">
-								Bookings
+								Checkins
 							</a>
 							<i class="fa fa-angle-right"></i>
 						</li>
 						<li>
 							<a href="{{{ URL::to('#') }}}">
-								Record Bookings
+								Record Checkins
 							</a>
 						</li>						
 					</ul>
@@ -45,48 +45,42 @@
 				</div>						
 				@endif				
 			</div>		
-			<div class="row">			
+			<!--START CONTENT-->
+			<div class="row">
 			 <div class="col-md-4 col-md-offset-1 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-				 <h3>New Booking</h3>
+				 <h3>New Checkin</h3>
 				 <hr>
-				<form role="form" method="POST" action="{{{ URL::to('/new_booking') }}}">
-					   @if(isset($events))						
+				<form role="form" method="POST" action="{{{ URL::to('/new_checkin') }}}">
 						<input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
-						<div class="form-group">
-							<label for="type">Event Name:</label>
-							<select name="event" class="form-control" required>
-								@foreach($events as $event)								
-									<option value="{{$event['id']}}">{{$event['name']}}</option>					
-								@endforeach							
-							</select>
-						</div>						
-						@endif			
-						@if(isset($assets))												
+						@if(isset($assets))	
 						<div class="form-group">
 							<label for="type">Item:</label>
-							<select name="item" class="form-control" required>
-								@foreach($assets as $asset)								
-									<option value="{{$asset['id']}}">{{$asset['name']}}</option>					
-								@endforeach							
+							<select name="item" class="form-control" required>	
+							@foreach($assets as $asset)							
+								<option value="{{$asset['id']}}">{{$asset['name']}}</option>	
+							@endforeach
 							</select>
-						</div>						
-						@endif								
-						@if(isset($assets))					
+						</div>
+						@endif												
 						<div class="form-group">
-							<label for="type">Client:</label>
-							<select name="client" class="form-control" required>
-							@foreach($clients as $client)								
-								<option value="{{$client['id']}}">{{$client['client_name']}}</option>
-							@endforeach							
+							<label for="username">Date Back: </label>
+							<div class="right-inner-addon">                        		
+                        		<input class="form-control datepicker" id="datepicker1" readonly="readonly" type="text" name="date_out"/>
+                        	</div>							
+						</div>
+						<div class="form-group">
+							<label for="type">Condition:</label>
+							<select name="condition" class="form-control" required>				
+								<option value="Good">Good</option>
+								<option value="Faulty">Faulty</option>							
 							</select>
-						</div>	
-						@endif		
+						</div>																						
 						<div class="form-group">
-							<label class="">Event Venue: </label>
-							<input class="form-control" type="text" name="eventvenue" value="" required>
-						</div>																			
+							<label class="">Checked In by: </label>
+							<input class="form-control" type="text" name="checked_out_by" value="" required>
+						</div>																	
 						<div class="form-group text-left">
-							<input class="btn btn-primary" type="submit" name="btn-register" value="Record Booking">
+							<input class="btn btn-primary" type="submit" name="btn-register" value="Check In Item">
 						</div>
 					</form>
 				</div>

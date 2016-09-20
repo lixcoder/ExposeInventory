@@ -27,6 +27,28 @@
 				</div>
 			</div>			
 			<!-- END PAGE HEADER-->
+			<div>				
+				<?php $message = Session::get('message');?>
+					@if(isset($message))
+					<div class="alert alert-info alert-dismissible fade in" role="alert">
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					  <strong>{{$message}}</strong>	
+					</div>						
+					@endif	
+
+				<?php $alert = Session::get('alert');?>
+					@if(isset($alert))
+					<div class="alert alert-danger alert-dismissible fade in" role="alert">
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					  <strong>{{$alert}}</s
+					  trong>	
+					</div>						
+					@endif						
+			</div>		
 			<!--START CONTENT-->
 			<div class="row" ng-controller="">
 				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -50,20 +72,20 @@
 				@endif
 				</div>		
 				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-				@if(isset($clientele))
+				@if(isset($maintains))
 					<div class="dashboard-stat green">
 						<div class="visual">
-							<i class="fa fa-user"></i>
+							<i class="fa fa-cogs"></i>
 						</div>
 						<div class="details">
 							<div class="number">
-								 {{$clientele}}
+								 {{$maintains}}
 							</div>
 							<div class="desc">
-								 Total Clients
+								 Maintenances
 							</div>
 						</div>
-						<a class="more" href="{{{ URL::to('/view_client') }}}">
+						<a class="more" href="{{{ URL::to('/view_maintenance') }}}">
 							 View more <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -83,7 +105,7 @@
 								 Total Bookings
 							</div>
 						</div>
-						<a class="more" href="{{{ URL::to('/view_booking') }}}">
+						<a class="more" href="{{{ URL::to('/view_event') }}}">
 							 View more <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -97,7 +119,7 @@
 						</div>
 						<div class="details">
 							<div class="number">
-								{{$maintains}}
+								{{$checkouts}}
 							</div>
 							<div class="desc">
 								 Total Checkouts
@@ -110,12 +132,43 @@
 				@endif
 				</div>				
 			</div>
+			<hr>
 			<!--START CONTENT-->
 			<div class="clearfix">
 			</div>
 			<!--START CONTENT SECOND-->
-			<div class="row">
-				
+			<div class="row" style="margin-top:2%;">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">				
+					<div class="dashboard-stat ">
+					<img src="{{asset('assets/img/expose_banner.png')}}" alt="Expose Banner" class="img-responsive"/>
+					</div>						
+				</div>	
+				<div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">				
+					<div class="dashboard-stat ">
+					<div >
+					<h3>Add Category</h3>
+					<hr>
+					<form role="form" method="POST" action="{{{ URL::to('/dashboard') }}}">
+							<input type="hidden" name="_token" value="{{{ Session::getToken() }}}">			
+							<div class="form-group">
+								<label for="username">Category</label>
+								<div class="right-inner-addon">                        		
+	                        		<input class="form-control " type="text" name="category"/>
+	                        	</div>							
+							</div>
+							<div class="form-group">
+								<label class="">Description: </label>
+								<textarea class="form-control" rows="5" cols="45" name="description">
+									
+								</textarea>
+							</div>																					
+							<div class="form-group text-left">
+								<input class="btn btn-primary" type="submit" name="btn-register" value="Add Category">
+							</div>
+						</form>
+					</div>
+				</div>						
+			</div>													
 			</div>
 			<!--END CONTENT SECOND-->
 		</div>
