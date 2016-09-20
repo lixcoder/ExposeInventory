@@ -196,6 +196,20 @@
 						</li>						
 					</ul>
 				</li>
+
+
+				<li >
+					<a href="{{{ URL::to('locations') }}}">
+						<i class="fa fa-map-marker"></i>
+						<span class="title">
+							Locate Item
+						</span>
+						<span class="selected">
+						</span>
+					</a>
+				</li>
+
+
 				<li>
 					<a href="javascript:;">
 						<i class="fa fa-file"></i>
