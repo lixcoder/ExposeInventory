@@ -5,7 +5,10 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"barryvdh/laravel-dompdf": "0.4.*"
+		"barryvdh/laravel-dompdf": "0.4.*",
+		"anthonyvipond/googlemaps-laravel": "dev-master",
+		"zizaco/confide": "~4.3@dev"
+
 	},
 	"autoload": {
 		"classmap": [

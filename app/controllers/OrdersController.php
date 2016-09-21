@@ -18,19 +18,19 @@ class OrdersController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function getCreate()
+	public function getCreate($id)
 	{
 		$assets = Asset::all();
 		$quoteItems = Session::get('quoteitems');
 		//Session::forget('quoteitems');
 		//dd($quoteItems);
-		return View::make('quotation.create', compact('assets', 'quoteItems'));
+		return View::make('quotation.create', compact('assets', 'quoteItems', 'id'));
 	}
 
 	/**
 	 * Add Items to Session
 	 */
-	public function postCreate(){
+	public function postCreate($id){
 		$item_id = Input::get('item');
 		$quantity = Input::get('quantity');
 
@@ -41,12 +41,13 @@ class OrdersController extends \BaseController {
 		$item = Asset::findOrfail($item_id);
 		//return $item_name;
 		Session::push('quoteitems', [
+				'item_id'=>$item->id,
 				'item_name'=>$item->name,
 				'item_serial'=>$item->serial_number,
+				'item_price'=>$item->lease_price,
 				'item_quantity'=>$quantity,
-				'item_price'=>1000,
 			]);
-		return Redirect::action('OrdersController@getCreate');
+		return Redirect::action('OrdersController@getCreate', array($id));
 	}
 
 
@@ -57,8 +58,34 @@ class OrdersController extends \BaseController {
 	 */
 	public function postStore()
 	{
-		dd(Session::get('quoteitems'));
-		dd(Input::all());
+		$orderitems = Session::get('quoteitems');
+		$input = Input::all();
+
+		$count = DB::table('orders')->count();
+		$order_number = date("Y/m/d/").str_pad($count+1, 4, "0", STR_PAD_LEFT);
+		$event_id = array_get($input, 'event_id');
+		//dd($input);
+		$order = new Order;
+		$order->event_id = $event_id;
+		$order->order_number = $order_number;
+		$order->type = 'quotation';
+		$order->discount = array_get($input, 'discount');
+		$order->date = date("Y-m-d");
+		$order->save();
+
+		foreach($orderitems as $item){
+			$itm = Asset::findOrfail($item['item_id']);
+			$ord = Order::findOrfail($order->id);
+
+			$ordItem = new Orderitem;
+			$ordItem->item_id = $item['item_id'];
+			$ordItem->order_id = $order->id;
+			$ordItem->quantity = $item['item_quantity'];
+			$ordItem->save();
+		}
+
+		Session::forget('quoteitems');
+		return Redirect::action('EventController@manageEvent', array($event_id));
 	}
 
 
@@ -68,9 +95,21 @@ class OrdersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function getView($id)
 	{
-		//
+		$order = DB::table('orderitems')
+								->join('orders', 'orderitems.order_id', '=', 'orders.id')
+								->join('assets', 'orderitems.item_id', '=', 'assets.id')
+								->select('orderitems.id as ordr_item_id', 'item_id', 'order_id', 'quantity', 
+													'assets.id as asst_id', 'name', 'serial_number', 'description', 'lease_price',
+													'orders.id as ordr_id', 'event_id', 'order_number', 'type', 'discount', 'date')
+								->where('type', 'quotation')
+								->where('orders.id', $id)
+								->get();
+		//$order = Order::findOrfail($id);
+		$pdf = PDF::loadView('quotation.quote', compact('order'))->setPaper('a4')->setOrientation('landscape');
+		return $pdf->stream('Quotation.pdf');
+		return View::make('quotation.quote', compact('order'));
 	}
 
 

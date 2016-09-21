@@ -7,7 +7,7 @@
 				<div class="col-md-12">
 					<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 					<h3 class="page-title">
-					Bookings <small>View Bookings</small>
+					Check Ins <small>View Checkins</small>
 					</h3>
 					<ul class="page-breadcrumb breadcrumb">
 						<li>
@@ -19,13 +19,13 @@
 						</li>
 						<li>
 							<a href="{{{ URL::to('#') }}}">
-								Bookings
+								Check Ins
 							</a>
 							<i class="fa fa-angle-right"></i>
 						</li>
 						<li>
 							<a href="{{{ URL::to('#') }}}">
-								View Bookings
+								View Checkins
 							</a>
 						</li>						
 					</ul>

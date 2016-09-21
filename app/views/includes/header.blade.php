@@ -87,6 +87,12 @@
 					</a>
 					<ul class="sub-menu">
 						<li>
+							<a href="{{{ URL::to('/new_assetcategory') }}}">
+								<i class="fa fa-plus"></i>
+								Asset Category
+							</a>
+						</li>		
+						<li>
 							<a href="{{{ URL::to('/new_asset') }}}">
 								<i class="fa fa-plus"></i>
 								New Asset
@@ -123,31 +129,7 @@
 							</a>
 						</li>						
 					</ul>
-				</li>					
-				<li>
-					<a href="javascript:;">
-						<i class="fa fa-book"></i>
-						<span class="title">
-							Bookings
-						</span>
-						<span class="arrow ">
-						</span>
-					</a>
-					<ul class="sub-menu">
-						<li>
-							<a href="{{{ URL::to('/new_booking') }}}">
-								<i class="fa fa-plus"></i>
-								New Booking
-							</a>
-						</li>						
-						<li>
-							<a href="{{{ URL::to('/view_booking') }}}">
-								<i class="fa fa-list"></i>
-								View Bookings
-							</a>
-						</li>						
-					</ul>
-				</li>
+				</li>									
 				<li>
 					<a href="javascript:;">
 						<i class="fa fa-random"></i>
@@ -170,6 +152,24 @@
 								View Checkouts
 							</a>
 						</li>						
+					</ul>
+				</li>			
+				<li>
+					<a href="javascript:;">
+						<i class="fa fa-share"></i>
+						<span class="title">
+							Checkins
+						</span>
+						<span class="arrow ">
+						</span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{{{ URL::to('/new_checkin') }}}">
+								<i class="fa fa-plus"></i>
+								New Checkin
+							</a>
+						</li>																
 					</ul>
 				</li>						
 				<li>
@@ -196,6 +196,20 @@
 						</li>						
 					</ul>
 				</li>
+
+
+				<li >
+					<a href="{{{ URL::to('locations') }}}">
+						<i class="fa fa-map-marker"></i>
+						<span class="title">
+							Locate Item
+						</span>
+						<span class="selected">
+						</span>
+					</a>
+				</li>
+
+
 				<li>
 					<a href="javascript:;">
 						<i class="fa fa-file"></i>

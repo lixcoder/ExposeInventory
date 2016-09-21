@@ -8,8 +8,7 @@
 <table>
     <thead>
       <tr>
-        <th>#</th>
-        <th>Client Name</th>
+        <th>#</th>        
         <th>Item Name</th>
         <th>Event Name</th>
         <th>Event Venue</th>
@@ -21,17 +20,15 @@
     <tbody>
     @foreach($books as $book)
 		<?php   
-       $item_name=$book->item_name;
+     $item_name=$book->item_name;
 	   $event_name=$book->event_name;
 	   $event_venue=$book->event_venue;
 	   $start_date=$book->event_start;							  
 	   $end_date=$book->event_end;
-	   $tech_lead=$book->tech_lead;	   	
-	   $client_name=$book->client_name;			   						
+	   $tech_lead=$book->tech_lead;	   		  	   					
 	 ?>  				
       <tr>
-        <td>{{$count}}</td>
-        <td>{{$client_name}}</td>
+        <td>{{$count}}</td>       
         <td>{{$item_name}}</td>
         <td>{{$event_name}}</td>
         <td>{{$event_venue}}</td>

@@ -60,51 +60,19 @@
 							@endforeach
 							</select>
 						</div>
-						@endif
-						<div class="form-group">
-							<label for="username">Date Expected Out</label>
-							<div class="right-inner-addon">                        		
-                        		<input class="form-control datepicker" id="datepicker" readonly="readonly" type="text" name="date_expected_out"/>
-                        	</div>							
-						</div>								
+						@endif												
 						<div class="form-group">
 							<label for="username">Date Out</label>
 							<div class="right-inner-addon">                        		
                         		<input class="form-control datepicker" id="datepicker1" readonly="readonly" type="text" name="date_out"/>
                         	</div>							
-						</div>											
-						<div class="form-group">
-							<label for="username">Date Expected Back</label>
-							<div class="right-inner-addon">                        		
-                        		<input class="form-control datepicker" id="datepicker2" readonly="readonly" type="text" name="date_expected_back"/>
-                        	</div>							
-						</div>	
-						<div class="form-group">
-							<label for="username">Date Back</label>
-							<div class="right-inner-addon">                        		
-                        		<input class="form-control datepicker" id="datepicker3" readonly="readonly" type="text" name="date_back"/>
-                        	</div>							
-						</div>	
-						@if(isset($clients))	
-						<div class="form-group">
-							<label for="type">Client:</label>
-							<select name="client" class="form-control" required>	
-							@foreach($clients as $client)							
-								<option value="{{$client['id']}}">{{$client['client_name']}}</option>	
-							@endforeach
-							</select>
-						</div>
-						@endif											
+						</div>																						
 						<div class="form-group">
 							<label class="">Checked out by: </label>
 							<input class="form-control" type="text" name="checked_out_by" value="" required>
-						</div>
-						<div class="form-group">
-							<label class="">Checked in by: </label>
-							<input class="form-control" type="text" name="checked_in_by" value="" required>
-						</div>																				
+						</div>																	
 						<div class="form-group text-left">
-							<input class="btn btn-primary" type="submit" name="btn-register" value="Checkout Item">
+							<input class="btn btn-primary" type="submit" name="btn-register" value="Check Out Item">
 						</div>
 					</form>
 				</div>

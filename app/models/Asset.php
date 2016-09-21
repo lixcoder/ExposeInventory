@@ -19,4 +19,8 @@ class Asset extends Eloquent{
 		$this->belongsTo('booking');
 	}
 
+	public function orderitems(){
+		return $this->belongsToMany('Orderitem');
+	}
+
 }

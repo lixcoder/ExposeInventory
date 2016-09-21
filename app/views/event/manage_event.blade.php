@@ -79,7 +79,7 @@
 								<ul class="nav nav-tabs nav-tabs-lg">
 									<li class="active">
 										<a href="#tab_1" data-toggle="tab">
-											 Items
+											 Book Items
 										</a>
 									</li>
 									<li>
@@ -112,40 +112,48 @@
 												<div class="portlet blue box">
 													<div class="portlet-title">
 														<div class="caption">
-															<i class="fa fa-calendar"></i>
-															Inventory Items: <small>Select event items</small>
+															<i class="fa fa-book"></i>
+															Book Items: <small>Select tems to book for the event</small>
 														</div>														
 													</div>													
-													<div class="portlet-body">												<div class="table-responsive">
-												        <?php $count=1;?>
-												        @if(isset($assets) && count($assets)>0)
-												        <form action="manage_event" method="POST">
-														  <table id="viewdata" class="table table-striped table-bordered">
-											      			<thead>
-														        <th>#</th>					      
-														        <th>Name</th>					        
-														        <th>Description</th>
-														        <th>Store</th>	
-														        <th>Select</th>	    
-													      </thead>
-									      					<tbody>
-									      					@foreach($assets as $asset)
-										      					<tr>
-										      					<td>{{$count}}</td>	      				
-										      					<td>{{$asset['name']}}</td>	      					
-										      					<td>{{$asset['description']}}</td>
-										      					<td>{{$asset['store']}}</td>
-										      					<input type="hidden" name="asset_id" value="{{$asset['id']}}"/>
-										      					<td><button class="btn btn-warning">Pick</button></td>
-										      					<?php $count++;?>
-										      				@endforeach
-									      					</tbody>
-									      				</table>
-									      				@if(isset($events))
-									      				<input type="hidden" name="event_id" value="{{$events['id']}}"/> @endif
-									      				</form>    				
-									      				@endif      				
-									      				</div>										      				
+													<div class="portlet-body">	
+													<form role="form" method="POST" action="{{{ URL::to('view_event/manage/manage_event') }}}">
+														   @if(isset($assets))						
+															<input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+															<div class="form-group">
+																<label for="type">Item Name:</label>
+																<select name="asset" class="form-control" required>
+																	@foreach($assets as $asset)							
+																		<option value="{{$asset['id']}}">{{$asset['name']}}</option>					
+																	@endforeach							
+																</select>
+															</div>						
+															@endif														<div class="form-group">
+																<label for="username"> Start Date</label>
+																<div id-="container">	                        
+																    <input type="text" class="form-control" id="datepicker" name="start_date"  readonly="readonly">							    
+																</div>
+															</div>	
+															<div class="form-group">
+																<label for="username"> End Date</label>
+																<div class="right-inner-addon">                        		
+									                        		<input class="form-control datepicker" id="datepicker2" readonly="readonly" type="text" name="end_date"/>
+									                        	</div>							
+															</div>														
+															@if(isset($events))	
+															<!--START VERBOTEN-->
+															<input type="hidden" name="event_id" value="{{$events['id']}}"/>
+															<!--END VERBOTEN-->
+															<div class="form-group">
+																<label class="">Event Venue: </label>
+																<input class="form-control" type="text" name="eventvenue" value="{{$events['event_venue']}}" readonly="readonly">
+															</div>	
+															@endif													
+															<div class="form-group text-left">
+																<input class="btn btn-primary" type="submit" name="btn-register" value="Book Item">
+															</div>
+														</form>	
+
 													</div>
 												</div>
 											</div>											
@@ -160,8 +168,8 @@
 									<!-- END TAB2 CONTENT-->
 
 									<!-- BEGIN TAB3 CONTENT-->
-									<div class="tab-pane" id="tab_3">
-										@include('tabs.quotation')													
+									<div class="tab-pane" id="tab_3">			
+										@include('tabs.quotation')	
 									</div>
 									<!--END TAB3 CONTENT-->
 

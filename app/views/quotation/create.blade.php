@@ -43,7 +43,7 @@
 				 	<!-- BEGIN PAGE CONTENT-->
 					
 					<div class="col-md-12">
-						<form role="form" class="form-inline" action="{{{ URL::to('orders/quotation/create') }}}" method="POST">
+						<form role="form" class="form-inline" action="{{{ URL::to('orders/quotation/create/'.$id) }}}" method="POST">
 							&emsp;&emsp;<div class="form-group">
 								<label>Items</label>&nbsp;
 								<select name="item" class="form-control">
@@ -69,7 +69,7 @@
 						<div class="panel panel-default">
 							
 							<form role="form" action="{{{ URL::to('orders/quotation/store') }}}" method="POST">
-
+							<input type="hidden" name="event_id" value="{{$id}}">
 							<div class="panel-heading">
 								<h5>Items in Session</h5>
 							</div>

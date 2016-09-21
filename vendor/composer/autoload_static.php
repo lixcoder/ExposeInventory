@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946
+class ComposerStaticInit4d09c2cd409ebb534bf891e87038c274
 {
     public static $files = array (
         'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
@@ -14,6 +14,10 @@ class ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946
     );
 
     public static $prefixLengthsPsr4 = array (
+        'Z' => 
+        array (
+            'Zizaco\\Confide\\' => 15,
+        ),
         'S' => 
         array (
             'Symfony\\Component\\Filesystem\\' => 29,
@@ -35,6 +39,10 @@ class ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946
     );
 
     public static $prefixDirsPsr4 = array (
+        'Zizaco\\Confide\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zizaco/confide/src/Confide',
+        ),
         'Symfony\\Component\\Filesystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/filesystem',
@@ -67,6 +75,13 @@ class ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946
             'Whoops' => 
             array (
                 0 => __DIR__ . '/..' . '/filp/whoops/src',
+            ),
+        ),
+        'V' => 
+        array (
+            'Vipond\\GoogleMaps\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/anthonyvipond/googlemaps-laravel/src',
             ),
         ),
         'S' => 
@@ -201,7 +216,7 @@ class ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946
     public static $classMap = array (
         'Absolute_Positioner' => __DIR__ . '/..' . '/dompdf/dompdf/include/absolute_positioner.cls.php',
         'Abstract_Renderer' => __DIR__ . '/..' . '/dompdf/dompdf/include/abstract_renderer.cls.php',
-        'AddClientidandEventVenuetoeventsteble' => __DIR__ . '/../..' . '/app/database/migrations/2016_09_20_062940_addClientidandEventVenuetoeventsteble.php',
+        'AddingPriceColumnOnAssetsTable' => __DIR__ . '/../..' . '/app/database/migrations/2016_09_20_140428_addingPriceColumnOnAssetsTable.php',
         'Adobe_Font_Metrics' => __DIR__ . '/..' . '/phenx/php-font-lib/classes/Adobe_Font_Metrics.php',
         'Asset' => __DIR__ . '/../..' . '/app/models/Asset.php',
         'AssetController' => __DIR__ . '/../..' . '/app/controllers/AssetController.php',
@@ -234,6 +249,7 @@ class ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Category' => __DIR__ . '/../..' . '/app/models/Category.php',
         'Cellmap' => __DIR__ . '/..' . '/dompdf/dompdf/include/cellmap.cls.php',
+        'Checkin' => __DIR__ . '/../..' . '/app/models/Checkin.php',
         'Checkout' => __DIR__ . '/../..' . '/app/models/Checkout.php',
         'CheckoutController' => __DIR__ . '/../..' . '/app/controllers/CheckoutController.php',
         'ClassPreloader\\Application' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/ClassPreloader/Application.php',
@@ -247,8 +263,9 @@ class ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946
         'ClassPreloader\\Parser\\FileVisitor' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/ClassPreloader/Parser/FileVisitor.php',
         'ClassPreloader\\Parser\\NodeTraverser' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/ClassPreloader/Parser/NodeTraverser.php',
         'Client' => __DIR__ . '/../..' . '/app/models/Client.php',
-        'CreateOrderItemsTable' => __DIR__ . '/../..' . '/app/database/migrations/2016_09_20_145019_create_order_items_table.php',
-        'CreateOrdersTable' => __DIR__ . '/../..' . '/app/database/migrations/2016_09_20_105331_create_orders_table.php',
+        'ConfideSetupUsersTable' => __DIR__ . '/..' . '/zizaco/confide/src/migrations/2013_01_13_172956_confide_setup_users_table.php',
+        'CreateOrderitemsTable' => __DIR__ . '/../..' . '/app/database/migrations/2016_09_20_202556_create_orderitems_table.php',
+        'CreateOrdersTable' => __DIR__ . '/../..' . '/app/database/migrations/2016_09_20_182754_create_orders_table.php',
         'Crypt_AES' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/AES.php',
         'Crypt_Base' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Base.php',
         'Crypt_Blowfish' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Blowfish.php',
@@ -706,6 +723,7 @@ class ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946
         'List_Bullet_Image_Frame_Decorator' => __DIR__ . '/..' . '/dompdf/dompdf/include/list_bullet_image_frame_decorator.cls.php',
         'List_Bullet_Positioner' => __DIR__ . '/..' . '/dompdf/dompdf/include/list_bullet_positioner.cls.php',
         'List_Bullet_Renderer' => __DIR__ . '/..' . '/dompdf/dompdf/include/list_bullet_renderer.cls.php',
+        'LocationsController' => __DIR__ . '/../..' . '/app/controllers/LocationsController.php',
         'Maintenance' => __DIR__ . '/../..' . '/app/models/Maintenance.php',
         'MaintenanceController' => __DIR__ . '/../..' . '/app/controllers/MaintenanceController.php',
         'Math_BigInteger' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Math/BigInteger.php',
@@ -803,7 +821,6 @@ class ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946
         'Null_Frame_Reflower' => __DIR__ . '/..' . '/dompdf/dompdf/include/null_frame_reflower.cls.php',
         'Null_Positioner' => __DIR__ . '/..' . '/dompdf/dompdf/include/null_positioner.cls.php',
         'Occasion' => __DIR__ . '/../..' . '/app/models/Occasion.php',
-        'Order' => __DIR__ . '/../..' . '/app/models/Order.php',
         'OrdersController' => __DIR__ . '/../..' . '/app/controllers/OrdersController.php',
         'PDFLib_Adapter' => __DIR__ . '/..' . '/dompdf/dompdf/include/pdflib_adapter.cls.php',
         'PHPParser_Autoloader' => __DIR__ . '/..' . '/nikic/php-parser/lib/PHPParser/Autoloader.php',
@@ -1272,6 +1289,7 @@ class ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946
         'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
         'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'RecreateDatabasewithForeignKeys' => __DIR__ . '/../..' . '/app/database/migrations/2016_09_20_123417_recreateDatabasewithForeignKeys.php',
         'Renderer' => __DIR__ . '/..' . '/dompdf/dompdf/include/renderer.cls.php',
         'ReportsController' => __DIR__ . '/../..' . '/app/controllers/ReportsController.php',
         'SearchController' => __DIR__ . '/../..' . '/app/controllers/SearchController.php',
@@ -2235,6 +2253,14 @@ class ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946
         'Text_Frame_Reflower' => __DIR__ . '/..' . '/dompdf/dompdf/include/text_frame_reflower.cls.php',
         'Text_Renderer' => __DIR__ . '/..' . '/dompdf/dompdf/include/text_renderer.cls.php',
         'User' => __DIR__ . '/../..' . '/app/models/User.php',
+        'UserRepository' => __DIR__ . '/../..' . '/app/models/UserRepository.php',
+        'UsersController' => __DIR__ . '/../..' . '/app/controllers/UsersController.php',
+        'Vipond\\GoogleMaps\\Adapters\\CurlHttpAdapter' => __DIR__ . '/..' . '/anthonyvipond/googlemaps-laravel/src/Vipond/GoogleMaps/Adapters/CurlHttpAdapter.php',
+        'Vipond\\GoogleMaps\\Entities\\Location' => __DIR__ . '/..' . '/anthonyvipond/googlemaps-laravel/src/Vipond/GoogleMaps/Entities/Location.php',
+        'Vipond\\GoogleMaps\\GoogleMapsFacade' => __DIR__ . '/..' . '/anthonyvipond/googlemaps-laravel/src/Vipond/GoogleMaps/GoogleMapsFacade.php',
+        'Vipond\\GoogleMaps\\GoogleMapsServiceProvider' => __DIR__ . '/..' . '/anthonyvipond/googlemaps-laravel/src/Vipond/GoogleMaps/GoogleMapsServiceProvider.php',
+        'Vipond\\GoogleMaps\\Providers\\GoogleMaps' => __DIR__ . '/..' . '/anthonyvipond/googlemaps-laravel/src/Vipond/GoogleMaps/Providers/GoogleMaps.php',
+        'Vipond\\GoogleMaps\\Providers\\GoogleMapsForBusiness' => __DIR__ . '/..' . '/anthonyvipond/googlemaps-laravel/src/Vipond/GoogleMaps/Providers/GoogleMapsForBusiness.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',
         'Whoops\\Exception\\Frame' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Frame.php',
@@ -2256,15 +2282,32 @@ class ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946
         'Whoops\\Run' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Run.php',
         'Whoops\\Util\\Misc' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/Misc.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
+        'Zizaco\\Confide\\CacheLoginThrottleService' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/CacheLoginThrottleService.php',
+        'Zizaco\\Confide\\Confide' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/Confide.php',
+        'Zizaco\\Confide\\ConfideUser' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/ConfideUser.php',
+        'Zizaco\\Confide\\ConfideUserInterface' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/ConfideUserInterface.php',
+        'Zizaco\\Confide\\ControllerCommand' => __DIR__ . '/..' . '/zizaco/confide/src/commands/ControllerCommand.php',
+        'Zizaco\\Confide\\EloquentPasswordService' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/EloquentPasswordService.php',
+        'Zizaco\\Confide\\EloquentRepository' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/EloquentRepository.php',
+        'Zizaco\\Confide\\Facade' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/Facade.php',
+        'Zizaco\\Confide\\LoginThrottleServiceInterface' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/LoginThrottleServiceInterface.php',
+        'Zizaco\\Confide\\MigrationCommand' => __DIR__ . '/..' . '/zizaco/confide/src/commands/MigrationCommand.php',
+        'Zizaco\\Confide\\PasswordServiceInterface' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/PasswordServiceInterface.php',
+        'Zizaco\\Confide\\RepositoryInterface' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/RepositoryInterface.php',
+        'Zizaco\\Confide\\RoutesCommand' => __DIR__ . '/..' . '/zizaco/confide/src/commands/RoutesCommand.php',
+        'Zizaco\\Confide\\ServiceProvider' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/ServiceProvider.php',
+        'Zizaco\\Confide\\Support\\GenerateCommand' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/Support/GenerateCommand.php',
+        'Zizaco\\Confide\\UserValidator' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/UserValidator.php',
+        'Zizaco\\Confide\\UserValidatorInterface' => __DIR__ . '/..' . '/zizaco/confide/src/Confide/UserValidatorInterface.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit4fabe1a5d3d496c2a28c294c26bb3946::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit4d09c2cd409ebb534bf891e87038c274::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit4d09c2cd409ebb534bf891e87038c274::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit4d09c2cd409ebb534bf891e87038c274::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit4d09c2cd409ebb534bf891e87038c274::$classMap;
 
         }, null, ClassLoader::class);
     }

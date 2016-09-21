@@ -5,7 +5,7 @@
 				<div class="caption">
 					<!--<i class="fa fa-c"></i>
 					<small>Quotations</small>-->
-					<a href="{{{ URL::to('orders/quotation/create') }}}" class="btn btn-sm btn-primary">New Quote</a>
+					<a href="{{{ URL::to('orders/quotation/create/'.$events['id']) }}}" class="btn btn-sm btn-primary">New Quote</a>
 				</div>														
 			</div>													
 			<div class="portlet-body">
@@ -17,19 +17,24 @@
 	      			<thead>
 				        <th>#</th>					      
 				        <th>Order Number</th>					        
-				        <th>Event</th>
+				        <th>Event ID</th>
 				        <th>Date</th>	
+				        <th>Status</th>
 				        <th>Action</th>	    
 			      </thead>
     					<tbody>
-    					@foreach($assets as $asset)
+    					@foreach($quotations as $quote)
       					<tr>
-      					<td>{{$count}}</td>	      				
-      					<td>{{$asset['name']}}</td>	      					
-      					<td>{{$asset['description']}}</td>
-      					<td>{{$asset['store']}}</td>
-      					<input type="hidden" name="asset_id" value="{{$asset['id']}}"/>
-      					<td><button class="btn btn-warning btn-sm">Pick</button></td>
+      					<td>{{ $count }}</td>	      				
+      					<td>{{ $quote->order_number }}</td>	      					
+      					<td>{{ $quote->event_id }}</td>
+      					<td>{{ $quote->date }}</td>
+      					<td>{{ $quote->status }}</td>
+      					<td>
+      						<a href="{{ URL::to('orders/quotation/view/'.$quote->id) }}" class="btn btn-info btn-sm">View</a>&emsp;
+      						<a href="" class="btn btn-primary btn-sm">Mail</a>&emsp;
+      						<a href="" class="btn btn-danger btn-sm">Cancel</a>
+      					</td>
       					<?php $count++;?>
       				@endforeach
     					</tbody>

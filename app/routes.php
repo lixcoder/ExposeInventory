@@ -13,6 +13,8 @@ Route::group(array('before'=>'auth'),function(){
 *
 */
 Route::get('/','HomeController@splashScreen');
+Route::get('/new_assetcategory','HomeController@showCategory');
+Route::post('/new_assetcategory','HomeController@createCategory');
 /**
 *THE ASSETS ROUTES
 *
@@ -27,13 +29,12 @@ Route::post('asset/view_asset/update','AssetController@updateAsset');
 *THE BOOKINGS ROUTES
 *
 */
-Route::get('/new_booking','BookingController@recordBooking');
-Route::post('/new_booking','BookingController@createBooking');
-Route::get('/view_booking/delete/{id}','BookingController@trashBooking');
-Route::post('booking/view_booking','BookingController@editBooking');
-Route::get('/view_booking','BookingController@viewBooking');
-Route::post('booking/view_booking/update','BookingController@updateBooking');
-Route::get('/view_booking/manage/{id}','BookingController@manageBooking');
+Route::get('/new_checkin','BookingController@recordCheckin');
+Route::post('/new_checkin','BookingController@createCheckin');
+Route::get('/view_checkin/delete/{id}','BookingController@trashCheckin');
+Route::post('checkin/view_checkin','BookingController@editCheckin');
+Route::get('/view_checkin','BookingController@viewCheckin');
+Route::post('checkin/view_checkin/update','BookingController@updateCheckin');
 /**
 *THE EVENTS ROUTES
 *
@@ -84,6 +85,8 @@ Route::post('/maintenances_report','ReportsController@viewMaintenanceReport');
 *
 */
 Route::post('/search','SearchController@performSearch');
+
+Route::resource('locations', 'LocationsController');
 
 /**
  * Quotation Controller

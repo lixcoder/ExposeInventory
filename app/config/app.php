@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'Africa/Nairobi',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -121,7 +121,10 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',	
-		'Barryvdh\DomPDF\ServiceProvider',		 
+		'Barryvdh\DomPDF\ServiceProvider',	
+		'Zizaco\Confide\ServiceProvider',	 
+		'Barryvdh\DomPDF\ServiceProvider',
+		'Vipond\GoogleMaps\GoogleMapsServiceProvider',
 	),
 
 	/*
@@ -188,7 +191,9 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',	
-		'PDF'			  => 'Barryvdh\DomPDF\Facade',		
+		'PDF'			  => 'Barryvdh\DomPDF\Facade',	
+		'Confide'    	  => 'Zizaco\Confide\Facade',			
+		'GoogleMaps' => 'Vipond\GoogleMaps\GoogleMapsFacade',		
 	),
 
 );

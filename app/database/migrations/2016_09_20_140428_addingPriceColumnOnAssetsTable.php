@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrderItemsTable extends Migration {
+class AddingPriceColumnOnAssetsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,8 +12,8 @@ class CreateOrderItemsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('orderitems', function($table){
-			
+		Schema::table('assets', function($table){
+		    $table->decimal('lease_price',10,2);
 		});
 	}
 
@@ -24,7 +24,9 @@ class CreateOrderItemsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('orderitems');
+		Schema::table('assets', function($table){
+   			 $table->dropColumn('lease_price');
+		});	
 	}
 
 }
