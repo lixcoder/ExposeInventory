@@ -30,7 +30,8 @@
       					<td>{{ $quote->date }}</td>
       					<td>{{ $quote->status }}</td>
       					<td>
-      						<a href="{{ URL::to('orders/quotation/view/'.$quote->id) }}" class="btn btn-info btn-sm">View</a>&emsp;
+      						<a href="{{ URL::to('orders/quotation/view/'.$quote->id) }}" class="btn btn-info btn-sm">View Quote</a>&emsp;
+      						<a href="{{ URL::to('orders/quotation/invoice/'.$quote->id) }}" class="btn btn-info btn-sm">Invoice</a>&emsp;
       						<a role="button" id="mailBtn" data-toggle="modal" href="#myModal" class="btn btn-primary btn-sm">Mail</a>&emsp;
       						<a href="" class="btn btn-danger btn-sm">Cancel</a>
       					</td>

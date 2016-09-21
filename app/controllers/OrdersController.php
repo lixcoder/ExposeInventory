@@ -113,6 +113,31 @@ class OrdersController extends \BaseController {
 	}
 
 
+	/**
+	 * GENERATE INVOICE
+	 */
+	public function getInvoice($id){
+		$order = DB::table('orderitems')
+								->join('orders', 'orderitems.order_id', '=', 'orders.id')
+								->join('assets', 'orderitems.item_id', '=', 'assets.id')
+								->select('orderitems.id as ordr_item_id', 'item_id', 'order_id', 'quantity', 
+													'assets.id as asst_id', 'name', 'serial_number', 'description', 'lease_price',
+													'orders.id as ordr_id', 'event_id', 'order_number', 'type', 'discount', 'date')
+								->where('type', 'quotation')
+								->where('orders.id', $id)
+								->get();
+		//$order = Order::findOrfail($id);
+		$pdf = PDF::loadView('quotation.invoice', compact('order'))->setPaper('a4')->setOrientation('landscape');
+		return $pdf->stream('Invoice.pdf');
+		return View::make('quotation.invoice', compact('order'));
+	}
+	
+
+
+	/**
+	 * [postMail description]
+	 * MAIL QUOTATION
+	 */
 	public function postMail($id){
 		$mail_to = Input::get('mail_to');
 		$subject = Input::get('subject');
@@ -159,7 +184,7 @@ class OrdersController extends \BaseController {
     		$order = Order::findOrfail($id);
     		$order->status = 'mailed';
     		$order->update();
-    		
+
         $message = "Email successfully sent";
     }
     return Redirect::back()->with('message', $message);
