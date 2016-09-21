@@ -12,7 +12,6 @@
 			<div class="table-responsive">
 		        <?php $count=1;?>
 		        @if(isset($assets) && count($assets)>0)
-		        <form action="manage_event" method="POST">
 				  <table id="viewdata" class="table table-striped table-bordered">
 	      			<thead>
 				        <th>#</th>					      
@@ -32,18 +31,62 @@
       					<td>{{ $quote->status }}</td>
       					<td>
       						<a href="{{ URL::to('orders/quotation/view/'.$quote->id) }}" class="btn btn-info btn-sm">View</a>&emsp;
-      						<a href="" class="btn btn-primary btn-sm">Mail</a>&emsp;
+      						<a role="button" id="mailBtn" data-toggle="modal" href="#myModal" class="btn btn-primary btn-sm">Mail</a>&emsp;
       						<a href="" class="btn btn-danger btn-sm">Cancel</a>
       					</td>
       					<?php $count++;?>
+
+								<!-- MODAL WINDOW TO SEND MAIL -->
+								<div id="myModal" class="modal fade">
+								    <div class="modal-dialog">
+								        <div class="modal-content">
+								            <div class="modal-header">
+								                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								                <h4 class="modal-title">Mail Quotation To Client</h4>
+								            </div>
+								            <div class="modal-body">
+								                <form role="form" action="{{ URL::to('orders/quotation/mail/'.$quote->id) }}" method="POST">
+								                    <div class="form-group">
+								                        <label>To:</label>
+								                        <input class="form-control" type="email" name="mail_to" value="">
+								                    </div>
+								                    <div class="form-group">
+								                        <label>Subject:</label>
+								                        <input class="form-control" type="text" name="subject" value="Quotation">
+								                    </div>
+								                    <div class="form-group">
+								                        <label>Email:</label>
+								                        <textarea class="form-control" name="mail_body" id="mail_body" rows="4"></textarea>
+								                    </div>
+								                    <hr>
+								                    <div class="form-group text-right">
+								                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> &emsp; 
+								                        <button type="submit" class="btn btn-primary">Send Mail</button>        
+								                    </div>
+								                
+								                </form>
+								            </div>
+								        </div>
+								    </div>
+								</div>
+								<!-- END MODAL MAIL -->
+								<!-- ========================================================================= -->
+
+
       				@endforeach
     					</tbody>
-    				</table>
-    				@if(isset($events))
-    				<input type="hidden" name="event_id" value="{{$events['id']}}"/> @endif
-    				</form>    				
+    				</table>   				
     				@endif      				
-    				</div>										      				
+    				</div>	
+			
+			<script type="text/javascript">
+				$(document).ready(function(){
+
+				});
+			</script>
+
+			
+
 			</div>
 		</div>
 	</div>			

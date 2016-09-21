@@ -11,7 +11,44 @@
 		<meta charset="utf-8">
 
 		<style type="text/css" media="screen">
-			
+			@page { margin: 170px 20px; }
+			 .header { position: fixed; left: 0px; top: -150px; right: 0px; height: 150px;  text-align: center; }
+			 .content {margin-top: -120px; margin-bottom: -150px}
+			 .footer { position: fixed; left: 0px; bottom: -180px; right: 0px; height: 50px;  }
+			 .footer .page:after { content: counter(page, upper-roman); }
+
+
+			  .demo {
+			    border:1px solid #C0C0C0;
+			    border-collapse:collapse;
+			    padding:0px;
+			  }
+			  .demo th {
+			    border:1px solid #C0C0C0;
+			    padding:5px;
+			  }
+			  .demo td {
+			    border:1px solid #C0C0C0;
+			    padding:5px;
+			  }
+
+
+			  .inv {
+			    border:1px solid #C0C0C0;
+			    border-collapse:collapse;
+			    padding:0px;
+			  }
+			  .inv th {
+			    border:1px solid #C0C0C0;
+			    padding:5px;
+			  }
+			  .inv td {
+			    border-bottom:0px solid #C0C0C0;
+			    border-right:1px solid #C0C0C0;
+			    padding:5px;
+			  }
+
+
 		</style>
 
 	</head>
@@ -36,13 +73,16 @@
             	<td>&nbsp;</td>
 							
 							<td colspan="2">
+								@foreach($order as $quote)
+								<?php $date = $quote->date; $quote_number = $quote->order_number; ?>
+								@endforeach
 								<strong>Quotation</strong>
 								<table class="demo" style="width: 100%">
 									<tr>
 										<td>Date</td><td>Quote #</td>
 									</tr>
 									<tr>
-										<td>{{ '' }}</td>
+										<td>{{ $date }}</td><td>{{ $quote_number }}</td>
 									</tr>
 								</table>
 							</td>
@@ -67,14 +107,14 @@
 
 					<table class="inv" style="width: 100%">
 						<tr>
-							<td style="border-bottom:1px solid #C0C0C0">Item</td>
-							<td style="border-bottom:1px solid #C0C0C0">Description</td>
-	            <td style="border-bottom:1px solid #C0C0C0">Qty</td>
-	            <td style="border-bottom:1px solid #C0C0C0">Rate</td>
-	            <td style="border-bottom:1px solid #C0C0C0">Amount</td>
+							<td style="border-bottom:1px solid #C0C0C0"><strong>Item</strong></td>
+							<td style="border-bottom:1px solid #C0C0C0"><strong>Description</strong></td>
+	            <td style="border-bottom:1px solid #C0C0C0"><strong>Qty</strong></td>
+	            <td style="border-bottom:1px solid #C0C0C0"><strong>Rate</strong></td>
+	            <td style="border-bottom:1px solid #C0C0C0"><strong>Amount</strong></td>
 						</tr>
 						
-						<?php $total = 0; $i = 1; $grand = 0; ?>
+						<?php $total = 0; $i = 1; $grand = 0; $discount = 0;?>
 
 						@foreach($order as $quote)
 						
@@ -82,6 +122,7 @@
 							$discount = $quote->discount;
 							$amount = $quote->lease_price * $quote->quantity;
 							$total += $amount;
+							$discount = $quote->discount;
 						?>
 						
 						<tr>
@@ -100,12 +141,17 @@
 
            	<tr>
 
+           	<tr>
+            	<td style="border-top:1px solid #C0C0C0" ><strong>Discount</strong> </td><td style="border-top:1px solid #C0C0C0" colspan="1">KES {{asMoney($discount)}}</td></tr>
+           	<tr>
+
 						<?php
 							$grand = $grand + $total;
 						?>
 
 						<tr>
-            	<td style="border-top:1px solid #C0C0C0" ><strong>Amount Payable</strong> </td><td style="border-top:1px solid #C0C0C0" colspan="1">KES {{asMoney($grand-$quote->discount)}}</td>
+           		<td rowspan="4" colspan="3">&nbsp;</td>
+            	<td style="border-top:1px solid #C0C0C0" ><strong>Amount Payable</strong> </td><td style="border-top:1px solid #C0C0C0" colspan="1">KES {{asMoney($grand-$discount)}}</td>
             </tr>
 
 					</table>

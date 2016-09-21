@@ -113,6 +113,60 @@ class OrdersController extends \BaseController {
 	}
 
 
+	public function postMail($id){
+		$mail_to = Input::get('mail_to');
+		$subject = Input::get('subject');
+		$mail_body = Input::get('mail_body');
+
+		$filePath = $_SERVER['DOCUMENT_ROOT'].'/temp/';
+    $fileName = 'Quotation.pdf';
+
+    if($mail_to === "" || $subject === "" || $mail_body === ""){
+    	$message = "Please fill all the fields";
+    	return Redirect::back()->with('message', $message);
+    }
+
+    $order = DB::table('orderitems')
+								->join('orders', 'orderitems.order_id', '=', 'orders.id')
+								->join('assets', 'orderitems.item_id', '=', 'assets.id')
+								->select('orderitems.id as ordr_item_id', 'item_id', 'order_id', 'quantity', 
+													'assets.id as asst_id', 'name', 'serial_number', 'description', 'lease_price',
+													'orders.id as ordr_id', 'event_id', 'order_number', 'type', 'discount', 'date')
+								->where('type', 'quotation')
+								->where('orders.id', $id)
+								->get();
+
+		$pdf = PDF::loadView('quotation.quote', compact('order'))->setPaper('a4')->setOrientation('landscape');
+		//return $pdf->stream($fileName);
+		$attach = $pdf->save($filePath.$fileName);
+
+		// SEND MAIL
+    $from_name = 'Xpose';
+    $from_mail = 'info@lixnet.net';
+    $data = array('body'=>$mail_body, 'from'=>$from_name, 'subject'=>$subject);
+    Mail::send('mails.mail_quotation', $data, function($message) use($subject, $mail_to, $from_name, $from_mail, $attach, $filePath, $fileName){
+        $message->to($mail_to, '');
+        $message->from($from_mail, $from_name);
+        $message->subject($subject);
+        $message->attach($filePath.$fileName);
+    });
+
+    unlink($filePath.$fileName);
+
+    if(count(Mail::failures()) > 0){
+        $message = "Email not sent! Please try again later";
+    } else{
+    		$order = Order::findOrfail($id);
+    		$order->status = 'mailed';
+    		$order->update();
+    		
+        $message = "Email successfully sent";
+    }
+    return Redirect::back()->with('message', $message);
+
+	}
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 *

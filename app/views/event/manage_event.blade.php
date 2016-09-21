@@ -33,6 +33,8 @@
 				</div>
 			</div>			
 			<!-- END PAGE HEADER-->
+
+			
 			<div>				
 				<?php $message = Session::get('message');?>
 					@if(isset($message))
