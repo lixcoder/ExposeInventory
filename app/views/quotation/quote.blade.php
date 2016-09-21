@@ -62,7 +62,7 @@
 						<tr>
 
 							<td style="width: 150px">
-								<img src="{{URL::to('public/img/xpose.jpg')}}" width="30px" alt="LOGO">
+								<img src="{{asset('public/img/xpose.jpg')}}" width="30px" alt="LOGO">
 							</td>
 
 							<td>

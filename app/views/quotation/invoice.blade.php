@@ -62,7 +62,7 @@
 						<tr>
 
 							<td style="width: 150px">
-								<img src="" alt="LOGO">
+								<img src="{{asset('public/img/xpose.jpg')}}" alt="LOGO">
 							</td>
 
 							<td>
@@ -98,7 +98,7 @@
 						</tr>
 						<tr>
 							<td>
-								{{ 'Clien Data ...' }}
+								{{ 'Client Data ...' }}
 							</td>
 						</tr>
 					</table>
