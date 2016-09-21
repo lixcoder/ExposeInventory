@@ -219,13 +219,7 @@
 						<span class="arrow ">
 						</span>
 					</a>
-					<ul class="sub-menu">
-						<li>
-							<a href="{{{ URL::to('#') }}}">
-								<i class="fa fa-barcode"></i>
-								Assets Report
-							</a>
-						</li>
+					<ul class="sub-menu">						
 						<li>
 							<a href="{{{ URL::to('/bookings_report') }}}">
 								<i class="fa fa-book"></i>

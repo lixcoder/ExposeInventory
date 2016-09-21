@@ -90,7 +90,9 @@ class EventController extends BaseController {
 	{		
 		$events=Occasion::findOrFail($id);	
 		$assets=Asset::all();	
-		return View::make('event.manage_event',compact('events','assets'));			
+		$quotations=Order::all();
+
+		return View::make('event.manage_event',compact('events','assets', 'quotations'));			
 	}
 	/**
 	*FUNCTION TO ADD ITEMS TO AN EVENT

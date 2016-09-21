@@ -57,7 +57,11 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'inventory',
 			'username'  => 'root',
+<<<<<<< HEAD
 			'password'  => 'K0049521m',
+=======
+			'password'  => 'mwaste7',
+>>>>>>> 511f5353537485dafb9e9ac84599b1194b5d68c8
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

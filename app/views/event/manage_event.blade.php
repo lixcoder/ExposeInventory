@@ -33,6 +33,8 @@
 				</div>
 			</div>			
 			<!-- END PAGE HEADER-->
+
+			
 			<div>				
 				<?php $message = Session::get('message');?>
 					@if(isset($message))
@@ -168,7 +170,8 @@
 									<!-- END TAB2 CONTENT-->
 
 									<!-- BEGIN TAB3 CONTENT-->
-									<div class="tab-pane" id="tab_3">														
+									<div class="tab-pane" id="tab_3">			
+										@include('tabs.quotation')	
 									</div>
 									<!--END TAB3 CONTENT-->
 
