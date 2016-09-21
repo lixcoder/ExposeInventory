@@ -1,5 +1,22 @@
 <?php
-
+Route::get('/',function(){
+	return View::make('hello');
+});
+/**
+ * =================================================================================
+ * LOGIN & SIGNUP PAGES & PROCESS
+ * Confide Routes
+ */
+Route::get('/sign_up', 'UsersController@createSignUp');
+Route::post('/sign_up', 'UsersController@doSignUp');
+Route::get('/login', 'UsersController@createLogin');
+Route::post('/login', 'UsersController@doLogin');
+Route::get('/confirm/{code}', 'UsersController@confirm');
+Route::get('/forgot_pwd', 'UsersController@forgotPassword');
+Route::post('/forgot_pwd', 'UsersController@doForgotPassword');
+Route::get('/reset_pwd/{token}', 'UsersController@resetPassword');
+Route::post('/reset_pwd', 'UsersController@doResetPassword');
+Route::get('/logout', 'UsersController@logout');
 /**
 *THE ROUTE GROUP TO ENFORCE AUTHENTICATION
 *
@@ -90,3 +107,5 @@ Route::resource('locations', 'LocationsController');
  * Quotation Controller
  */
 Route::controller('/orders/quotation', 'OrdersController');
+
+});
