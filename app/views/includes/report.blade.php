@@ -31,11 +31,6 @@
 		 <div class="col-md-12 col-sm-12 col-xs-12">
 		  @yield('report_content')
 		 </div>
- 	</div>
- 	<div class="row">
- 		<center>
- 			{{date('d-M-y')}}
- 		</center>
- 	</div>	
+ 	</div> 	
 </body>
 </html>

@@ -82,11 +82,16 @@ public function viewEventReport(){
 	$records=Input::all();
 	$periodfrom=array_get($records,'period_from');
 	$periodto=array_get($records,'period_to');
-	$occasions=DB::table('events')								
-				->select('*')	
-				->where('start_date','>=',$periodfrom)
-				->where('end_date','<=',$periodto)		
-				->get();	
+	$occasions=DB::table('bookings')
+					->join('events','bookings.event_id','=','events.id')
+					->join('assets','bookings.asset_id','=','assets.id')
+					->select('events.name as event_name','events.start_date as start_date',
+						'events.end_date as end_date','events.event_venue as event_venue',
+						'events.technical_lead as tech_lead','assets.name as item_name',
+						'assets.serial_number as serial')
+					->where('events.start_date','>=',$periodfrom)
+					->where('events.end_date','<=',$periodto)
+					->get();					
 			//return $maintains;
 	if(empty($occasions)){
 		return Redirect::back()->withAlert('The selected duration has no records to view.');

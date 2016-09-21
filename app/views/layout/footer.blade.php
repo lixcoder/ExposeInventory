@@ -1,13 +1,8 @@
 <!-- BEGIN FOOTER -->
 <div class="footer">
-	<div class="footer-inner">
-		 {{date('Y')}} All Rights Reserved
-	</div>
-	<div class="footer-tools">
-		<span class="go-top">
-			<i class="fa fa-angle-up"></i>
-		</span>
-	</div>
+	<div class="footer-inner" style="text-align:center;margin-left:45%;margin-top:1.25%;">
+		 <center>{{date('Y')}} All Rights Reserved</center>
+	</div>	
 </div>
 <!-- END FOOTER -->
 {{HTML::script('assets/plugins/jquery-1.10.2.min.js')}}

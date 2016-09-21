@@ -9,7 +9,12 @@
  * the Database.
  */
 class UserRepository
-{
+{        
+    public function trimMail($mail){
+        list($mail) = explode('@', $mail);
+        $mail = preg_replace('/\W/','', $mail);
+        return $mail;
+    }
     /**
      * Signup a new account with the given parameters
      *
@@ -20,8 +25,9 @@ class UserRepository
     public function signup($input)
     {
         $user = new User;
-
+        $mail = array_get($input, 'email');
         $user->email    = array_get($input, 'email');
+        $user->username     = $this->trimMail($mail);
         $user->password = array_get($input, 'password');
 
         // The password confirmation will be removed from model

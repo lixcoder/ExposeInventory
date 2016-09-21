@@ -7,7 +7,7 @@
 				<div class="col-md-12">
 					<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 					<h3 class="page-title">
-					Checkins <small>Record Checkins</small>
+					Assets <small>Add Asset Category</small>
 					</h3>
 					<ul class="page-breadcrumb breadcrumb">
 						<li>
@@ -19,13 +19,13 @@
 						</li>
 						<li>
 							<a href="{{{ URL::to('#') }}}">
-								Checkins
+								Assets
 							</a>
 							<i class="fa fa-angle-right"></i>
 						</li>
 						<li>
 							<a href="{{{ URL::to('#') }}}">
-								Record Checkins
+								Asset Category
 							</a>
 						</li>						
 					</ul>

@@ -12,9 +12,32 @@ Route::group(array('before'=>'auth'),function(){
 *THE SPLASH SCREEN/FIRST APPLICATION PAGE
 *
 */
-Route::get('/','HomeController@splashScreen');
+Route::get('/',function(){
+	return View::make('hello');
+});
+/**
+ * ================================================================
+ * LOGIN & SIGNUP PAGES & PROCESS
+ * Confide Routes
+ */
+Route::get('/sign_up', 'UsersController@createSignUp');
+Route::post('/sign_up', 'UsersController@doSignUp');
+Route::get('/login', 'UsersController@createLogin');
+Route::post('/login', 'UsersController@doLogin');
+Route::get('/confirm/{code}', 'UsersController@confirm');
+Route::get('/forgot_pwd', 'UsersController@forgotPassword');
+Route::post('/forgot_pwd', 'UsersController@doForgotPassword');
+Route::get('/reset_pwd/{token}', 'UsersController@resetPassword');
+Route::post('/reset_pwd', 'UsersController@doResetPassword');
+Route::get('/logout', 'UsersController@logout');
+/**
+*
+*
+*/
+Route::get('home/dashboard','HomeController@splashScreen');
 Route::get('/new_assetcategory','HomeController@showCategory');
 Route::post('/new_assetcategory','HomeController@createCategory');
+
 /**
 *THE ASSETS ROUTES
 *
@@ -87,3 +110,4 @@ Route::post('/maintenances_report','ReportsController@viewMaintenanceReport');
 Route::post('/search','SearchController@performSearch');
 
 Route::resource('locations', 'LocationsController');
+

@@ -121,13 +121,10 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',	
-<<<<<<< HEAD
 		'Barryvdh\DomPDF\ServiceProvider',	
 		'Zizaco\Confide\ServiceProvider',	 
-=======
 		'Barryvdh\DomPDF\ServiceProvider',
 		'Vipond\GoogleMaps\GoogleMapsServiceProvider',	 
->>>>>>> 1bdcc5897552c1ad33d531f965455dc57aae6ba5
 	),
 
 	/*
